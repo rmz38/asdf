@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import Task from './task'
+import Card from './card'
 import { Droppable } from 'react-beautiful-dnd'
 
 const Container = styled.div`
@@ -15,7 +15,7 @@ const Container = styled.div`
 const Title = styled.h3`
   padding: 8px;
 `
-const TaskList = styled.div`
+const CardList = styled.div`
   padding: 8px;
   transition: background-color 0.2s ease;
   background-color: ${props =>
@@ -25,22 +25,34 @@ const TaskList = styled.div`
 `
 
 export default class Column extends React.Component {
+  constructor(props) {
+    super(props)
+    this.handler = this.handler.bind(this)
+  }
+  handler(index, oldname, val){
+    this.props.handler(oldname, val, this.props.column.id)
+    // this.props.cards[index] = val
+    // this.setState({
+    //   ...this.props
+    // })
+    // this.props.handler(oldname, val, columnid)
+  }
   render() {
     return (
       <Container>
         <Title>{this.props.column.title}</Title>
-        <Droppable droppableId={this.props.column.id} type="TASK">
+        <Droppable droppableId={this.props.column.id} type="CARD">
           {(provided, snapshot) => (
-            <TaskList
+            <CardList
               innerRef={provided.innerRef}
               {...provided.droppableProps}
               isDraggingOver={snapshot.isDraggingOver}
             >
-              {this.props.tasks.map((task, index) => (
-                <Task key={task.id} task={task} index={index} />
+              {this.props.cards.map((card, index) => (
+                <Card key={card.name} card={card} index={index} handler={this.handler}/>
               ))}
               {provided.placeholder}
-            </TaskList>
+            </CardList>
           )}
         </Droppable>
       </Container>
