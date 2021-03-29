@@ -140,7 +140,7 @@ export default class Card extends React.Component {
               <Button onClick={()=>this.props.handler(this.props.index, this.props.card.name, this.temp)}>Save</Button>
               </Dropdown.Menu>
             </Dropdown>
-            <img src={texture} style={{width:100}}></img>
+            <img src={texture} style={{width:150}}></img>
           </Container>
         )}
       </Draggable>

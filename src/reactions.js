@@ -1,5 +1,5 @@
 const reactions = {
-      "Slash1":{
+      "Block":{
         "id": 0,
         "name":"Block",
         "description":"Shuffle GRAB into the Deck",
@@ -15,7 +15,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "Slash2":{
+      "Side Step":{
         "id": 1,
         "name":"Side Step",
         "description":"Shuffle BIDE TIME into the Deck",
@@ -31,7 +31,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "Slash3":{
+      "Parry":{
         "id": 2,
         "name":"Parry",
         "description":"Shuffle GUARD into the Deck",
@@ -47,7 +47,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "Slash4":{
+      "Roll Behind":{
         "id": 3,
         "name":"Roll Behind",
         "description":"Shuffle EXPOSED into the Deck",
@@ -63,7 +63,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "BideTime1":{
+      "Lunge":{
         "id": 4,
         "name":"Lunge",
         "description":"Shuffle GRAB into the Deck",
@@ -79,7 +79,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "BideTime2":{
+      "Guard":{
         "id": 5,
         "name":"Guard",
         "description":"Shuffle SLASH into the Deck",
@@ -95,7 +95,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "BideTime3":{
+      "Stab":{
         "id": 6,
         "name":"Stab",
         "description":"Shuffle GUARD into the Deck",
@@ -111,7 +111,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "BideTime4":{
+      "Feint":{
         "id": 7,
         "name":"Feint",
         "description":"Shuffle STAGGERED into the Deck",
@@ -127,7 +127,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "Guard1":{
+      "Strike":{
         "id": 8,
         "name":"Strike",
         "description":"Shuffle GRAB into the Deck",
@@ -143,7 +143,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "Guard2":{
+      "Probe":{
         "id": 9,
         "name":"Probe",
         "description":"Shuffle SLASH into the Deck",
@@ -159,7 +159,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "Guard3":{
+      "Jump Back":{
         "id": 10,
         "name":"Jump Back",
         "description":"Shuffle BIDE TIME into the Deck",
@@ -175,7 +175,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "Guard4":{
+      "Grab":{
         "id": 11,
         "name":"Grab",
         "description":"Shuffle GRAPPLED into the Deck",
@@ -191,7 +191,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "Grab1":{
+      "Break Free":{
         "id": 12,
         "name":"Break Free",
         "description":"Shuffle BIDE TIME into the Deck",
@@ -207,7 +207,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "Grab2":{
+      "Twist":{
         "id": 13,
         "name":"Twist",
         "description":"Shuffle GRAPPLED into the Deck",
@@ -223,7 +223,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "Grab3":{
+      "Kick":{
         "id": 14,
         "name":"Kick",
         "description":"Shuffle STAGGERED into the Deck",
@@ -239,7 +239,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "Grappled1":{
+      "Firm Grip":{
         "id": 15,
         "name":"Firm Grip",
         "description":"Shuffle GRAPPLED into the Deck",
@@ -255,7 +255,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "Grappled2":{
+      "Wrench":{
         "id": 16,
         "name":"Wrench",
         "description":"Shuffle STAGGERED into the Deck",
@@ -271,7 +271,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "Grappled3":{
+      "Face Grab":{
         "id": 17,
         "name":"Face Grab",
         "description":"Shuffle BLINDED into the Deck",
@@ -287,7 +287,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "Grappled4":{
+      "Headbutt":{
         "id": 18,
         "name":"Headbutt",
         "description":"Shuffle STUNNED into the Deck",
@@ -303,7 +303,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "Exposed1":{
+      "Evade":{
         "id": 19,
         "name":"Evade",
         "description":"Shuffle EXPOSED into the Deck",
@@ -319,7 +319,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "Exposed2":{
+      "Whack":{
         "id": 20,
         "name":"Whack",
         "description":"Shuffle STUNNED into the Deck",
@@ -335,7 +335,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "Exposed3":{
+      "Cut Above the Eyes":{
         "id": 21,
         "name":"Cut Above the Eyes",
         "description":"Shuffle BLINDED into the Deck",
@@ -351,7 +351,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "Exposed4":{
+      "Backstab":{
         "id": 22,
         "name":"Backstab",
         "description":"Shuffle WOUNDED into the Deck",
@@ -367,7 +367,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "Staggered1":{
+      "Juke":{
         "id": 23,
         "name":"Juke",
         "description":"Shuffle EXPOSED into the Deck",
@@ -383,7 +383,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "Staggered2":{
+      "Tackle":{
         "id": 24,
         "name":"Tackle",
         "description":"Shuffle GRAPPLED into the Deck",
@@ -399,7 +399,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "Staggered3":{
+      "Blunt Strike":{
         "id": 25,
         "name":"Blunt Strike",
         "description":"Shuffle STUNNED into the Deck",
@@ -415,7 +415,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "Staggered4":{
+      "Quick Slice":{
         "id": 26,
         "name":"Quick Slice",
         "description":"Shuffle WOUNDED into the Deck",
@@ -431,7 +431,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "Stunned1":{
+      "Eye Stab":{
         "id": 27,
         "name":"Eye Stab",
         "description":"Shuffle BLINDED into the Deck",
@@ -447,7 +447,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "Stunned2":{
+      "Shield Bash":{
         "id": 28,
         "name":"Shield Bash",
         "description":"Shuffle WOUNDED into the Deck",
@@ -463,7 +463,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "Stunned3":{
+      "Run Through":{
         "id": 29,
         "name":"Run Through",
         "description":"Shuffle IMPALED into the Deck",
@@ -479,7 +479,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "Stunned4":{
+      "Suplex":{
         "id": 30,
         "name":"Suplex",
         "description":"Shuffle CRUSHED into the Deck",
@@ -495,7 +495,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "Wounded1":{
+      "Wound":{
         "id": 31,
         "name":"Wound",
         "description":"Shuffle WOUNDED into the Deck",
@@ -511,7 +511,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "Wounded2":{
+      "Hammer Kick":{
         "id": 32,
         "name":"Hammer Kick",
         "description":"Shuffle CRUSHED into the Deck",
@@ -527,7 +527,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "Wounded3":{
+      "Pierce":{
         "id": 33,
         "name":"Pierce",
         "description":"Shuffle IMPALED into the Deck",
@@ -543,7 +543,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "Blinded1":{
+      "Discombobulate":{
         "id": 34,
         "name":"Discombobulate",
         "description":"Shuffle BLINDED into the Deck",
@@ -559,7 +559,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "Blinded2":{
+      "Mangle":{
         "id": 35,
         "name":"Mangle",
         "description":"Shuffle WOUNDED into the Deck",
@@ -575,7 +575,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "Blinded3":{
+      "Impale":{
         "id": 36,
         "name":"Impale",
         "description":"Shuffle IMPALED into the Deck",
@@ -591,7 +591,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "Blinded4":{
+      "Ankle Slash":{
         "id": 37,
         "name":"Ankle Slash",
         "description":"Shuffle CRUSHED into the Deck",
@@ -607,7 +607,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "Crushed1":{
+      "Skewer":{
         "id": 38,
         "name":"Skewer",
         "description":"Shuffle IMPALED into the Deck",
@@ -623,7 +623,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "Crushed2":{
+      "Boot Stomp":{
         "id": 39,
         "name":"Boot Stomp",
         "description":"Shuffle CRUSHED into the Deck",
@@ -639,7 +639,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "Crushed3":{
+      "Pulverize":{
         "id": 40,
         "name":"Pulverize",
         "description":"Shuffle INCAPACITATED into the Deck",
@@ -655,7 +655,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "Impaled1":{
+      "Perforate":{
         "id": 41,
         "name":"Perforate",
         "description":"Shuffle IMPALED into the Deck",
@@ -671,7 +671,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "Impaled2":{
+      "Shield Crush":{
         "id": 42,
         "name":"Shield Crush",
         "description":"Shuffle CRUSHED into the Deck",
@@ -687,7 +687,7 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "Impaled3":{
+      "Decapitate":{
         "id": 43,
         "name":"Decapitate",
         "description":"Shuffle INCAPACITATED into the Deck",

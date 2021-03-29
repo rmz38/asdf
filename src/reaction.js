@@ -17,24 +17,18 @@ const Container = styled.div`
     : 'white'};
 `
 
-export default class Card extends React.Component {
+export default class Reaction extends React.Component {
   constructor(props) {
     super(props)
 
     // this.handler = this.handler.bind(this)
-    this.temp = JSON.parse(JSON.stringify(this.props.card))
+    this.temp = JSON.parse(JSON.stringify(this.props.reaction))
   }
   render() {
     const isDragDisabled = false
-    let texture;
-    try {
-      texture = require('./cards/' + this.props.card.texture + '.png');
-    } catch {
-      texture = require('./cards/notfound.png')
-    }
     return (
       <Draggable
-        draggableId={this.props.card.name}
+        draggableId={this.props.reaction.name}
         index={this.props.index}
         isDragDisabled={isDragDisabled}
       >
@@ -46,7 +40,7 @@ export default class Card extends React.Component {
             isDragging={snapshot.isDragging}
             isDragDisabled={isDragDisabled}
           >
-            {this.props.card.name}
+            {this.props.reaction.name}
             <Dropdown>
               <Dropdown.Toggle variant="success" id="dropdown-basic">
                 Edit
@@ -58,7 +52,7 @@ export default class Card extends React.Component {
                     <InputGroup.Text id="nameInput">Name</InputGroup.Text>
                   </InputGroup.Prepend>
                   <FormControl
-                    placeholder={this.props.card.name}
+                    placeholder={this.props.reaction.name}
                     aria-label="name"
                     aria-describedby="basic-addon1"
                     onChange={(e)=>{
@@ -72,12 +66,12 @@ export default class Card extends React.Component {
                     <InputGroup.Text id="bladeInput">Blade</InputGroup.Text>
                   </InputGroup.Prepend>
                   <FormControl
-                    placeholder={this.props.card.resources.blade}
+                    placeholder={this.props.reaction.cost.blade}
                     aria-label="blade"
                     aria-describedby="basic-addon1"
                     onChange={(e)=>{
                       // this.props.card.name=e.target.value
-                      this.temp.resources.blade = +e.target.value
+                      this.temp.cost.blade = +e.target.value
                     }}
                   />
                 </InputGroup>
@@ -86,12 +80,12 @@ export default class Card extends React.Component {
                     <InputGroup.Text id="flourishInput">Flourish</InputGroup.Text>
                   </InputGroup.Prepend>
                   <FormControl
-                    placeholder={this.props.card.resources.flourish}
+                    placeholder={this.props.reaction.cost.flourish}
                     aria-label="flourish"
                     aria-describedby="basic-addon1"
                     onChange={(e)=>{
                       // this.props.card.name=e.target.value
-                      this.temp.resources.flourish = +e.target.value
+                      this.temp.cost.flourish = +e.target.value
                     }}
                   />
                 </InputGroup>
@@ -100,12 +94,12 @@ export default class Card extends React.Component {
                     <InputGroup.Text id="lungeInput">Lunge</InputGroup.Text>
                   </InputGroup.Prepend>
                   <FormControl
-                    placeholder={this.props.card.resources.lunge}
+                    placeholder={this.props.reaction.cost.lunge}
                     aria-label="lunge"
                     aria-describedby="basic-addon1"
                     onChange={(e)=>{
                       // this.props.card.name=e.target.value
-                      this.temp.resources.lunge = +e.target.value
+                      this.temp.cost.lunge = +e.target.value
                     }}
                   />
                 </InputGroup>
@@ -114,33 +108,32 @@ export default class Card extends React.Component {
                     <InputGroup.Text id="brawnInput">Brawn</InputGroup.Text>
                   </InputGroup.Prepend>
                   <FormControl
-                    placeholder={this.props.card.resources.brawn}
+                    placeholder={this.props.reaction.cost.brawn}
                     aria-label="brawn"
                     aria-describedby="basic-addon1"
                     onChange={(e)=>{
                       // this.props.card.name=e.target.value
-                      this.temp.resources.brawn = +e.target.value
+                      this.temp.cost.brawn = +e.target.value
                     }}
                   />
                 </InputGroup>
                 <InputGroup className="mb-3">
                   <InputGroup.Prepend>
-                    <InputGroup.Text id="brawnInput">Texture</InputGroup.Text>
+                    <InputGroup.Text id="brawnInput">Description</InputGroup.Text>
                   </InputGroup.Prepend>
                   <FormControl
-                    placeholder={this.props.card.texture}
+                    placeholder={this.props.reaction.description}
                     aria-label="texture"
                     aria-describedby="basic-addon1"
                     onChange={(e)=>{
                       // this.props.card.name=e.target.value
-                      this.temp.texture = e.target.value
+                      this.temp.description = e.target.value
                     }}
                   />
                 </InputGroup>
-                <Button onClick={()=>this.props.handler(this.props.index, this.props.card.name, this.temp)}>Save</Button>
+                <Button onClick={()=>this.props.handler(this.props.index, this.props.reaction.name, this.temp)}>Save</Button>
               </Dropdown.Menu>
             </Dropdown>
-            <img src={texture} style={{width:100}}></img>
           </Container>
         )}
       </Draggable>

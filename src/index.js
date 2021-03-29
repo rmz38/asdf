@@ -6,6 +6,7 @@ import styled from 'styled-components'
 
 import initialData from './initial-data'
 import Column from './column'
+import ReactionColumn from './reactionColumn'
 import 'bootstrap/dist/css/bootstrap.min.css';
 const Container = styled.div`
   display:flex;
@@ -17,12 +18,25 @@ class App extends React.Component {
     // Set the state directly. Use props if necessary.
     this.state = initialData
   }
-  handler= (name, val, columnid)=>{
+  //card handler
+  cardhandler= (name, val, columnid)=>{
     console.log(this.state)
     delete this.state.cards[name]
     this.state.cards[val.name] = val
     let index = this.state.columns[columnid].cardIds.indexOf(name)
     this.state.columns[columnid].cardIds[index] = val.name
+
+    this.setState({
+      ...this.state
+    })
+  }
+  //reaction handler
+  reactionhandler= (name, val)=>{
+    console.log(this.state)
+    delete this.state.reactions[name]
+    this.state.reactions[val.name] = val
+    let index = this.state.reactionColumn.reactionIds.indexOf(name)
+    this.state.reactionColumn.reactionIds[index] = val.name
 
     this.setState({
       ...this.state
@@ -46,7 +60,7 @@ class App extends React.Component {
 
     const start = this.state.columns[source.droppableId]
     const finish = this.state.columns[destination.droppableId]
-    if (start === finish) {
+    if (start === finish && source.droppableId !== "reactionCol") {
       const newCardIds = Array.from(start.cardIds)
       newCardIds.splice(source.index, 1)
       // console.log(draggableId)
@@ -67,7 +81,27 @@ class App extends React.Component {
       this.setState(newState)
       return
     }
+    if (start === finish) {
+      const col = this.state.reactionColumn
+      const newReactionIds = Array.from(col.reactionIds)
+      newReactionIds.splice(source.index, 1)
+      // console.log(draggableId)
+      newReactionIds.splice(destination.index, 0, draggableId)
+      console.log(newReactionIds)
+      const newColumn = {
+        ...col,
+        reactionIds: newReactionIds
+      }
 
+      const newState = {
+        ...this.state,
+        reactionColumn: {
+          ...newColumn
+        }
+      }
+      this.setState(newState)
+      return
+    }
     // Moving from one list to another
     const startCardIds = Array.from(start.cardIds)
     startCardIds.splice(source.index, 1)
@@ -105,6 +139,7 @@ class App extends React.Component {
     const reactions = this.state.reactionColumn.reactionIds.map(
       reactionID => this.state.reactions[reactionID]
     )
+    console.log(this.state)
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <Container>
@@ -115,10 +150,10 @@ class App extends React.Component {
               cardId => this.state.cards[cardId]
             )
             return (
-              <Column key={column.id} column={column} cards={cards} handler={this.handler} />
+              <Column key={column.id} column={column} cards={cards} handler={this.cardhandler} />
             )
           })}
-            <Column key='reac' column={this.state.reactionColumn} cards={reactions} handler={this.handler}/>
+            <ReactionColumn key='reac' column={this.state.reactionColumn} reactions={reactions} handler={this.reactionhandler}/>
         </Container>
       </DragDropContext>
     )
