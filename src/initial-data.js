@@ -1,6 +1,8 @@
 import cards from "./cards";
 import reactions from "./reactions";
-const reactionNames = Object.keys(JSON.parse(JSON.stringify(reactions)))
+const reactionsObject = JSON.parse(JSON.stringify(reactions))
+const reactionKeys = Object.keys(reactionsObject)
+const reactionNames = reactionKeys.map((key) => reactionsObject[key].name)
 console.log(reactionNames)
 const initialData = {
   cards: cards,
