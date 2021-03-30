@@ -40,9 +40,9 @@ export default class Reaction extends React.Component {
             isDragging={snapshot.isDragging}
             isDragDisabled={isDragDisabled}
           >
-            {this.props.reaction.name}
+            {this.props.reaction.name + " - " + this.props.reaction.id}
             <Dropdown>
-              <Dropdown.Toggle variant="success" id="dropdown-basic">
+              <Dropdown.Toggle variant="success" id="dropdown-basic" style = {{backgroundColor: 'brown', borderColor: 'brown'}}>
                 Edit
               </Dropdown.Toggle>
 
@@ -128,6 +128,28 @@ export default class Reaction extends React.Component {
                     onChange={(e)=>{
                       // this.props.card.name=e.target.value
                       this.temp.description = e.target.value
+                    }}
+                  />
+                </InputGroup>
+                <InputGroup className="mb-3">
+                  <InputGroup.Prepend>
+                    <InputGroup.Text id="reactions">Add to Deck</InputGroup.Text>
+                  </InputGroup.Prepend>
+                  <FormControl
+                    placeholder={this.temp.addToDeck}
+                    aria-label="texture"
+                    aria-describedby="basic-addon1"
+                    onChange={(e)=>{
+                      let input = e.target.value
+                      let cards = []
+                      while(input.indexOf(',') > -1){
+                        cards.push(+input.substring(0, input.indexOf(',')))
+                        input = input.substring(input.indexOf(',') + 1)
+                      }
+                      if( input.length > 0) {
+                        cards.push(+input)
+                      }
+                      this.temp.addToDeck = cards
                     }}
                   />
                 </InputGroup>

@@ -15,6 +15,8 @@ const Container = styled.div`
       : props.isDragging
         ? 'lightgreen'
         : 'white'};
+  display:flex;
+  flex-direction: column;
 `
 
 export default class Card extends React.Component {
@@ -46,9 +48,9 @@ export default class Card extends React.Component {
             isDragging={snapshot.isDragging}
             isDragDisabled={isDragDisabled}
           >
-            {this.props.card.name}
+            {this.props.card.name + " - " + this.props.card.id}
             <Dropdown>
-              <Dropdown.Toggle variant="success" id="dropdown-basic">
+              <Dropdown.Toggle variant="success" id="dropdown-basic" style={{width:'100%'}}>
                 Edit
               </Dropdown.Toggle>
 
@@ -137,10 +139,33 @@ export default class Card extends React.Component {
                     }}
                   />
                 </InputGroup>
+                <InputGroup className="mb-3">
+                  <InputGroup.Prepend>
+                    <InputGroup.Text id="responses">Reactions</InputGroup.Text>
+                  </InputGroup.Prepend>
+                  <FormControl
+                    placeholder={this.props.card.reactions}
+                    aria-label="texture"
+                    aria-describedby="basic-addon1"
+                    onChange={(e)=>{
+                      let input = e.target.value
+                      let responses = []
+                      while(input.indexOf(',') > -1){
+                        responses.push(+input.substring(0, input.indexOf(',')))
+                        input = input.substring(input.indexOf(',') + 1)
+                      }
+                      if( input.length > 0) {
+                        responses.push(+input)
+                      }
+                      this.temp.reactions = responses
+                    }}
+                  />
+                </InputGroup>
               <Button onClick={()=>this.props.handler(this.props.index, this.props.card.name, this.temp)}>Save</Button>
               </Dropdown.Menu>
             </Dropdown>
             <img src={texture} style={{width:150}}></img>
+            {/*<Button style ={{backgroundColor:'red'}}>Delete</Button>*/}
           </Container>
         )}
       </Draggable>
