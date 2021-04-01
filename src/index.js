@@ -5,6 +5,7 @@ import { DragDropContext } from 'react-beautiful-dnd'
 import styled from 'styled-components'
 import AddCard from './addCard'
 import AddReaction from './addReaction'
+import DownloadFight from './downloadFight'
 import initialData from './initial-data'
 import Column from './column'
 import ReactionColumn from './reactionColumn'
@@ -131,9 +132,26 @@ class App extends React.Component {
       document.body.removeChild(a);
     }
   }
+  download = (data) => {
+    const filename = "enemyFight.json"
+    const contentType = "application/json;charset=utf-8;"
+    const objectData = JSON.stringify(data, null, 2)
+    if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+      let blob = new Blob([decodeURIComponent(encodeURI(
+        objectData))], { type: contentType });
+      navigator.msSaveOrOpenBlob(blob, filename);
+    } else {
+      let a = document.createElement('a');
+      a.download = filename;
+      a.href = 'data:' + contentType + ',' + encodeURIComponent(objectData);
+      a.target = '_blank';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+  }
   //card handler
   cardhandler= (name, val, columnid)=>{
-    console.log(this.state)
     delete this.state.cards[name]
     this.state.cards[val.name] = val
     let index = this.state.columns[columnid].cardIds.indexOf(name)
@@ -145,12 +163,64 @@ class App extends React.Component {
   }
   //reaction handler
   reactionhandler= (name, val)=>{
-    console.log(this.state)
     delete this.state.reactions[name]
     this.state.reactions[val.name] = val
     let index = this.state.reactionColumn.reactionIds.indexOf(name)
     this.state.reactionColumn.reactionIds[index] = val.name
 
+    this.setState({
+      ...this.state
+    })
+  }
+  deleteCard = (name) => {
+    let cardid = this.state.cards[name].id
+    let cardlevel = this.state.cards[name].level
+    delete this.state.cards[name]
+    let newCol = []
+    //delete card from cards and columns
+    for (let j = 0; j < this.state.columns['column-'+cardlevel].cardIds.length; j++){
+      if (this.state.columns['column-'+cardlevel].cardIds[j] != name){
+        newCol.push(this.state.columns['column-'+cardlevel].cardIds[j])
+      }
+    }
+    this.state.columns['column-'+cardlevel].cardIds = newCol
+    //delete card from reactions
+    for (const [key, value] of Object.entries(this.state.reactions)) {
+      let cshuffled = this.state.reactions[key].addToDeck
+      let newCards = []
+      for (let i = 0; i < cshuffled.length; i++){
+        if (cshuffled[i] != cardid) {
+          newCards.push(cshuffled[i])
+        }
+      }
+      this.state.reactions[key].addToDeck = newCards
+    }
+    console.log(this.state)
+    this.setState({
+      ...this.state
+    })
+  }
+  deleteReaction = (name) => {
+    let reactionid = this.state.reactions[name].id
+    delete this.state.reactions[name]
+    let newCol = []
+    for (let k = 0; k < this.state.reactionColumn.reactionIds.length; k++){
+      if (this.state.reactionColumn.reactionIds[k] != name) {
+        newCol.push(this.state.reactionColumn.reactionIds[k])
+      }
+    }
+    this.state.reactionColumn.reactionIds = newCol
+    for (const [key, value] of Object.entries(this.state.cards)) {
+      let resps = this.state.cards[key].reactions
+      let newReactions = []
+      for (let i = 0; i < resps.length; i++){
+        if (resps[i] != reactionid) {
+          newReactions.push(resps[i])
+        }
+      }
+      this.state.cards[key].reactions = newReactions
+    }
+    console.log(this.state)
     this.setState({
       ...this.state
     })
@@ -264,6 +334,9 @@ class App extends React.Component {
             <AddCard addCard = {this.addCard}></AddCard>
             <Button onClick = {this.downloadCards}>Download Cards</Button>
           </div>
+          <div style={{display:'flex', flexDirection: 'column', paddingLeft: 10}}>
+            <DownloadFight downloadFight = {this.download} ></DownloadFight>
+          </div>
           <div style={{display:'flex', flexDirection: 'column'}}>
             <label>
               Upload Reaction
@@ -282,10 +355,11 @@ class App extends React.Component {
                 cardId => this.state.cards[cardId]
               )
               return (
-                <Column key={column.id} column={column} cards={cards} handler={this.cardhandler} />
+                <Column key={column.id} column={column} cards={cards} handler={this.cardhandler} delete ={this.deleteCard}/>
               )
             })}
-              <ReactionColumn key='reac' column={this.state.reactionColumn} reactions={reactions} handler={this.reactionhandler}/>
+              <ReactionColumn key='reac' column={this.state.reactionColumn} reactions={reactions} 
+                  delete = {this.deleteReaction} handler={this.reactionhandler}/>
           </Container>
         </DragDropContext>
       </div>

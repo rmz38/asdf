@@ -27,6 +27,7 @@ export default class Card extends React.Component {
     this.temp = JSON.parse(JSON.stringify(this.props.card))
   }
   render() {
+    this.temp = JSON.parse(JSON.stringify(this.props.card))
     const isDragDisabled = false
     let texture;
     try {
@@ -165,7 +166,7 @@ export default class Card extends React.Component {
               </Dropdown.Menu>
             </Dropdown>
             <img src={texture} style={{width:150}}></img>
-            {/*<Button style ={{backgroundColor:'red'}}>Delete</Button>*/}
+            <Button style ={{backgroundColor:'red'}} onClick= {()=>this.props.delete(this.props.card.name)}>Delete</Button>
           </Container>
         )}
       </Draggable>

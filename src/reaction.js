@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Draggable } from 'react-beautiful-dnd'
-import { Button, Dropdown, InputGroup, FormControl } from 'react-bootstrap';
+import { Button, Dropdown, InputGroup, FormControl, ButtonGroup } from 'react-bootstrap';
 const fs = require('fs');
 const Container = styled.div`
   border: 1px solid lightgrey;
@@ -25,6 +25,7 @@ export default class Reaction extends React.Component {
     this.temp = JSON.parse(JSON.stringify(this.props.reaction))
   }
   render() {
+    this.temp = JSON.parse(JSON.stringify(this.props.reaction))
     const isDragDisabled = false
     return (
       <Draggable
@@ -42,7 +43,7 @@ export default class Reaction extends React.Component {
           >
             {this.props.reaction.name + " - " + this.props.reaction.id}
             <Dropdown>
-              <Dropdown.Toggle variant="success" id="dropdown-basic" style = {{backgroundColor: 'brown', borderColor: 'brown'}}>
+              <Dropdown.Toggle variant="success" id="dropdown-basic" style = {{backgroundColor: 'brown', borderColor: 'brown', width:'80%'}}>
                 Edit
               </Dropdown.Toggle>
 
@@ -156,6 +157,7 @@ export default class Reaction extends React.Component {
                 <Button onClick={()=>this.props.handler(this.props.index, this.props.reaction.name, this.temp)}>Save</Button>
               </Dropdown.Menu>
             </Dropdown>
+            <Button style={{backgroundColor:'red'}} onClick={()=> this.props.delete(this.temp.name)}>Delete</Button>
           </Container>
         )}
       </Draggable>
