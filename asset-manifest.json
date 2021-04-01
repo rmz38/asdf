@@ -1,9 +1,9 @@
 {
-  "main.js": "/dd-level-editor/static/js/main.c701b220.chunk.js",
-  "main.js.map": "/dd-level-editor/static/js/main.c701b220.chunk.js.map",
+  "main.js": "/dd-level-editor/static/js/main.815ceef0.chunk.js",
+  "main.js.map": "/dd-level-editor/static/js/main.815ceef0.chunk.js.map",
   "static/css/1.e9c01c80.chunk.css": "/dd-level-editor/static/css/1.e9c01c80.chunk.css",
-  "static/js/1.7c53f4d6.chunk.js": "/dd-level-editor/static/js/1.7c53f4d6.chunk.js",
-  "static/js/1.7c53f4d6.chunk.js.map": "/dd-level-editor/static/js/1.7c53f4d6.chunk.js.map",
+  "static/js/1.8f2e62f5.chunk.js": "/dd-level-editor/static/js/1.8f2e62f5.chunk.js",
+  "static/js/1.8f2e62f5.chunk.js.map": "/dd-level-editor/static/js/1.8f2e62f5.chunk.js.map",
   "runtime~main.js": "/dd-level-editor/static/js/runtime~main.91de3004.js",
   "runtime~main.js.map": "/dd-level-editor/static/js/runtime~main.91de3004.js.map",
   "static/media/notfound.png": "/dd-level-editor/static/media/notfound.c7c261da.png",
@@ -22,6 +22,6 @@
   "static/media/wounded.png": "/dd-level-editor/static/media/wounded.f873b18a.png",
   "static/css/1.e9c01c80.chunk.css.map": "/dd-level-editor/static/css/1.e9c01c80.chunk.css.map",
   "index.html": "/dd-level-editor/index.html",
-  "precache-manifest.757009912020e0d6cc4afe2cda3cf848.js": "/dd-level-editor/precache-manifest.757009912020e0d6cc4afe2cda3cf848.js",
+  "precache-manifest.74562b71af8b4cea4869e2115d9d6d39.js": "/dd-level-editor/precache-manifest.74562b71af8b4cea4869e2115d9d6d39.js",
   "service-worker.js": "/dd-level-editor/service-worker.js"
 }
