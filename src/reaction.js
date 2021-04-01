@@ -154,7 +154,7 @@ export default class Reaction extends React.Component {
                     }}
                   />
                 </InputGroup>
-                <Button onClick={()=>this.props.handler(this.props.index, this.props.reaction.name, this.temp)}>Save</Button>
+                <Button onClick={()=>this.props.handler(this.props.reaction.name, this.temp)}>Save</Button>
               </Dropdown.Menu>
             </Dropdown>
             <Button style={{backgroundColor:'red'}} onClick={()=> this.props.delete(this.temp.name)}>Delete</Button>

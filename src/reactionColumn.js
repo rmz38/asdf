@@ -45,7 +45,7 @@ export default class ReactionColumn extends React.Component {
               isDraggingOver={snapshot.isDraggingOver}
             >
               {this.props.reactions.map((reaction, index) => (
-                <Reaction delete = {this.props.delete} key={reaction.name} reaction={reaction} index={index} handler={this.handler}/>
+                <Reaction delete = {this.props.delete} key={reaction.name + reaction.id} reaction={reaction} index={index} handler={this.handler}/>
               ))}
               {provided.placeholder}
             </ReactionList>

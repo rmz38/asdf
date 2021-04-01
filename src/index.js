@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import AddCard from './addCard'
 import AddReaction from './addReaction'
 import DownloadFight from './downloadFight'
+import { ArcherContainer, ArcherElement } from 'react-archer';
 import initialData from './initial-data'
 import Column from './column'
 import ReactionColumn from './reactionColumn'
@@ -14,6 +15,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const Container = styled.div`
   display:flex;
 `
+const rootStyle = { display: 'flex', justifyContent: 'center' };
+const rowStyle = { margin: '200px 0', display: 'flex', justifyContent: 'space-between', }
+const boxStyle = { padding: '10px', border: '1px solid black', };
+
 class App extends React.Component {
   constructor(props) {
     // Required step: always call the parent class' constructor
@@ -42,6 +47,17 @@ class App extends React.Component {
       this.setState(this.state)
     }
   }
+  getReactions = (reactionids) => {
+    reactionids = new Set(reactionids)
+    const reactions = this.state.reactions
+    const reactionObjects = {}
+    for (const [key, value] of Object.entries(reactions)) {
+      if (reactionids.has(reactions[key].id)){
+        reactionObjects[key] = reactions[key]
+      }
+    }
+    return reactionObjects
+  }
   uploadCards = (e) => {
     const fileReader = new FileReader();
     try{
@@ -63,7 +79,6 @@ class App extends React.Component {
         max = cards[key].id > max ? cards[key].id : max
       }
       this.state.cardCounter = max + 1
-      console.log(this.state);
       const newState = {
         ...this.state
       }
@@ -79,7 +94,6 @@ class App extends React.Component {
     }
     fileReader.onload = e => {
       const reactions = JSON.parse(e.target.result).Responses
-      console.log(reactions);
       this.state.reactions = {};
       // in case key doesnt match name, since keys dont matter in game code\
       let max = -1
@@ -89,7 +103,6 @@ class App extends React.Component {
         max = reactions[key].id > max ? reactions[key].id : max
       }
       this.state.reactionCounter = max + 1
-      console.log(this.state);
       const newState = {
         ...this.state
       }
@@ -163,6 +176,8 @@ class App extends React.Component {
   }
   //reaction handler
   reactionhandler= (name, val)=>{
+    console.log(name)
+    console.log(val)
     delete this.state.reactions[name]
     this.state.reactions[val.name] = val
     let index = this.state.reactionColumn.reactionIds.indexOf(name)
@@ -355,7 +370,10 @@ class App extends React.Component {
                 cardId => this.state.cards[cardId]
               )
               return (
-                <Column key={column.id} column={column} cards={cards} handler={this.cardhandler} delete ={this.deleteCard}/>
+                <Column key={column.id} column={column} 
+                    cards={cards} handler={this.cardhandler} delete ={this.deleteCard} 
+                    reactionHandler = {this.reactionhandler} reactionDelete = {this.deleteReaction}
+                    getReactions={this.getReactions}/>
               )
             })}
               <ReactionColumn key='reac' column={this.state.reactionColumn} reactions={reactions} 

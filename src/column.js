@@ -49,7 +49,12 @@ export default class Column extends React.Component {
               isDraggingOver={snapshot.isDraggingOver}
             >
               {this.props.cards.map((card, index) => (
-                <Card key={card.name} card={card} index={index} handler={this.handler} delete={this.props.delete}/>
+                <Card key={card.name + card.id} card={card} index={index} handler={this.handler} 
+                    delete={this.props.delete}
+                    reactions={this.props.getReactions(card.reactions)}
+                    reactionDelete={this.props.reactionDelete}
+                    reactionHandler={this.props.reactionHandler}
+                    />
               ))}
               {provided.placeholder}
             </CardList>

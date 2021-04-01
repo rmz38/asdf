@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Draggable } from 'react-beautiful-dnd'
 import { Button, Dropdown, InputGroup, FormControl } from 'react-bootstrap';
+import Reaction from './reaction'
 const fs = require('fs');
 const Container = styled.div`
   border: 1px solid lightgrey;
@@ -34,6 +35,18 @@ export default class Card extends React.Component {
       texture = require('./cards/' + this.props.card.texture + '.png');
     } catch {
       texture = require('./cards/notfound.png')
+    }
+    const reactionComponents =[]
+    let index = 0
+    for (const [key, value] of Object.entries(this.props.reactions)) {
+      let reaction = this.props.reactions[key]
+      reactionComponents.push(
+        <Reaction handler = {this.props.reactionHandler}
+          delete = {this.props.reactionDelete}
+          key={reaction.name} reaction={reaction} index={index}></Reaction>
+        )
+      index++
+      // console.log(reaction.name)
     }
     return (
       <Draggable
@@ -162,6 +175,12 @@ export default class Card extends React.Component {
                     }}
                   />
                 </InputGroup>
+                {reactionComponents}
+                {/* {this.props.reactions.map((reaction, index) =>(
+                  <Reaction handler = {this.props.reactionHandler}
+                      delete = {this.props.reactionDelete}
+                      key={reaction.name} reaction={reaction} index={index}></Reaction>
+                ))} */}
               <Button onClick={()=>this.props.handler(this.props.index, this.props.card.name, this.temp)}>Save</Button>
               </Dropdown.Menu>
             </Dropdown>

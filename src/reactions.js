@@ -175,9 +175,9 @@ const reactions = {
         "win": false,
         "lose":false
       },
-      "Grab":{
+      "Grasp":{
         "id": 11,
-        "name":"Grab",
+        "name":"Grasp",
         "description":"Shuffle GRAPPLED into the Deck",
         "cost": {
           "blade": 0,
