@@ -1,7 +1,7 @@
 self.__precacheManifest = [
   {
-    "revision": "815ceef0a2b3b1a99232",
-    "url": "/dd-level-editor/static/js/main.815ceef0.chunk.js"
+    "revision": "9b478269dd4aab426b20",
+    "url": "/dd-level-editor/static/js/main.9b478269.chunk.js"
   },
   {
     "revision": "8f2e62f5243d222411fd",
@@ -72,7 +72,7 @@ self.__precacheManifest = [
     "url": "/dd-level-editor/static/media/wounded.f873b18a.png"
   },
   {
-    "revision": "9463856136fb08520ca54247a2b23f3e",
+    "revision": "85d96740bbf0dcb245294e3e0bbb92fe",
     "url": "/dd-level-editor/index.html"
   }
 ];
