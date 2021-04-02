@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Draggable } from 'react-beautiful-dnd'
 import { Button, Dropdown, InputGroup, FormControl } from 'react-bootstrap';
 import Reaction from './reaction'
+import AddReaction from './addReaction'
 const fs = require('fs');
 const Container = styled.div`
   border: 1px solid lightgrey;
@@ -176,6 +177,7 @@ export default class Card extends React.Component {
                   />
                 </InputGroup>
                 {reactionComponents}
+                <AddReaction cardname = {this.props.card.name} addReaction={this.props.addReaction}></AddReaction>
                 {/* {this.props.reactions.map((reaction, index) =>(
                   <Reaction handler = {this.props.reactionHandler}
                       delete = {this.props.reactionDelete}

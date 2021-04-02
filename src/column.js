@@ -54,6 +54,7 @@ export default class Column extends React.Component {
                     reactions={this.props.getReactions(card.reactions)}
                     reactionDelete={this.props.reactionDelete}
                     reactionHandler={this.props.reactionHandler}
+                    addReaction={this.props.addReaction}
                     />
               ))}
               {provided.placeholder}

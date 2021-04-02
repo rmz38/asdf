@@ -27,11 +27,7 @@ const ReactionList = styled.div`
 export default class ReactionColumn extends React.Component {
   constructor(props) {
     super(props)
-    this.handler = this.handler.bind(this)
-  }
-  handler(index, oldname, val){
-    this.props.handler(oldname, val)
-    // this.props.handler(oldname, val, columnid)
+    console.log(this.props.reactions)
   }
   render() {
     return (
@@ -45,7 +41,7 @@ export default class ReactionColumn extends React.Component {
               isDraggingOver={snapshot.isDraggingOver}
             >
               {this.props.reactions.map((reaction, index) => (
-                <Reaction delete = {this.props.delete} key={reaction.name + reaction.id} reaction={reaction} index={index} handler={this.handler}/>
+                <Reaction delete = {this.props.delete} key={reaction.name} reaction={reaction} index={index} handler={this.props.handler}/>
               ))}
               {provided.placeholder}
             </ReactionList>

@@ -37,13 +37,17 @@ class App extends React.Component {
       this.setState(this.state)
     }
   }
-  addReaction = (nr) => {
+  addReaction = (nr, cardname) => {
+    console.log(nr, cardname)
     if (!(nr.name in this.state.reactions)){
       let newReaction = JSON.parse(JSON.stringify(nr))
       newReaction.id = this.state.reactionCounter
       this.state.reactionCounter += 1
       this.state.reactions[newReaction.name] = newReaction
       this.state.reactionColumn.reactionIds.unshift(newReaction.name)
+      if (cardname != null) {
+        this.state.cards[cardname].reactions.push(newReaction.id)
+      }
       this.setState(this.state)
     }
   }
@@ -357,7 +361,7 @@ class App extends React.Component {
               Upload Reaction
               <input name = "reactionupload" type="file" onChange={this.uploadReactions}></input>
             </label>
-            <AddReaction addReaction = {this.addReaction}></AddReaction>
+            <AddReaction cardname={null} addReaction = {this.addReaction}></AddReaction>
             <Button onClick = {this.downloadReactions}>Download Reactions</Button>
           </div>
         </div>
@@ -373,7 +377,8 @@ class App extends React.Component {
                 <Column key={column.id} column={column} 
                     cards={cards} handler={this.cardhandler} delete ={this.deleteCard} 
                     reactionHandler = {this.reactionhandler} reactionDelete = {this.deleteReaction}
-                    getReactions={this.getReactions}/>
+                    getReactions={this.getReactions}
+                    addReaction = {this.addReaction}/>
               )
             })}
               <ReactionColumn key='reac' column={this.state.reactionColumn} reactions={reactions} 

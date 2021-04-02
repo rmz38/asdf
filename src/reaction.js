@@ -26,6 +26,7 @@ export default class Reaction extends React.Component {
   }
   render() {
     this.temp = JSON.parse(JSON.stringify(this.props.reaction))
+    console.log(this.props.reaction.name)
     const isDragDisabled = false
     return (
       <Draggable

@@ -145,7 +145,7 @@ export default class AddReaction extends React.Component {
               }}
             />
           </InputGroup>
-          <Button onClick={()=>this.props.addReaction(this.temp)}>Add</Button>
+          <Button onClick={()=>this.props.addReaction(this.temp, this.props.cardname)}>Add</Button>
         </Dropdown.Menu>
       </Dropdown>
     )
