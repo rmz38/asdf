@@ -26,7 +26,6 @@ export default class Reaction extends React.Component {
   }
   render() {
     this.temp = JSON.parse(JSON.stringify(this.props.reaction))
-    console.log(this.props.reaction.name)
     const isDragDisabled = false
     return (
       <Draggable
@@ -48,7 +47,7 @@ export default class Reaction extends React.Component {
                 Edit
               </Dropdown.Toggle>
 
-              <Dropdown.Menu>
+              <Dropdown.Menu className="reaction-menu" style={{width:'300px'}}>
                 <InputGroup className="mb-3">
                   <InputGroup.Prepend>
                     <InputGroup.Text id="nameInput">Name</InputGroup.Text>
@@ -121,10 +120,11 @@ export default class Reaction extends React.Component {
                 </InputGroup>
                 <InputGroup className="mb-3">
                   <InputGroup.Prepend>
-                    <InputGroup.Text id="brawnInput">Description</InputGroup.Text>
+                    <InputGroup.Text id="brawnInput">Desc</InputGroup.Text>
                   </InputGroup.Prepend>
                   <FormControl
                     placeholder={this.props.reaction.description}
+                    as="textarea"
                     aria-label="texture"
                     aria-describedby="basic-addon1"
                     onChange={(e)=>{

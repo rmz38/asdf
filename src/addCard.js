@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Draggable } from 'react-beautiful-dnd'
 import { Button, Dropdown, InputGroup, FormControl } from 'react-bootstrap';
+import "./app.css"
 const fs = require('fs');
 const Container = styled.div`
   border: 1px solid lightgrey;
@@ -41,7 +42,7 @@ export default class AddCard extends React.Component {
             Add Card
           </Dropdown.Toggle>
 
-          <Dropdown.Menu>
+          <Dropdown.Menu className="card-menu">
             <InputGroup className="mb-3">
               <InputGroup.Prepend>
                 <InputGroup.Text id="nameInput">Name</InputGroup.Text>

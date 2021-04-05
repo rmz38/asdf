@@ -6,12 +6,12 @@ import styled from 'styled-components'
 import AddCard from './addCard'
 import AddReaction from './addReaction'
 import DownloadFight from './downloadFight'
-import { ArcherContainer, ArcherElement } from 'react-archer';
 import initialData from './initial-data'
 import Column from './column'
 import ReactionColumn from './reactionColumn'
 import { Button, Dropdown, InputGroup, FormControl } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Xarrow from 'react-xarrows'
 const Container = styled.div`
   display:flex;
 `
@@ -22,10 +22,25 @@ const boxStyle = { padding: '10px', border: '1px solid black', };
 class App extends React.Component {
   constructor(props) {
     // Required step: always call the parent class' constructor
-    super(props);
+    super(props)
     // Set the state directly. Use props if necessary.
     this.state = initialData
-    console.log(this.state);
+    // this.archer = React.createRef()
+    this.dothething = this.dothething.bind(this);
+    this.color = {color:"#00ff00"}
+    this.ref1 = React.createRef()
+    this.ref2 = React.createRef()
+
+  }
+  dothething = () => {
+    console.log("Asdf")
+    // this.color.color = "#0000ff"
+    console.log("Asdfasdf")
+    this.setState(this.state)
+  }
+  componentDidMount() {
+    // this.dothething = this.archer.current.refreshScreen
+    // this.archer.current.refreshScreen()
   }
   addCard = (nc) => {
     if (!(nc.name in this.state.cards)){
@@ -38,7 +53,6 @@ class App extends React.Component {
     }
   }
   addReaction = (nr, cardname) => {
-    console.log(nr, cardname)
     if (!(nr.name in this.state.reactions)){
       let newReaction = JSON.parse(JSON.stringify(nr))
       newReaction.id = this.state.reactionCounter
@@ -62,6 +76,17 @@ class App extends React.Component {
     }
     return reactionObjects
   }
+  getCards = (cardids) => {
+    cardids = new Set(cardids)
+    const cards = this.state.cards
+    const cardObjects = {}
+    for (const [key, value] of Object.entries(cards)) {
+      if (cardids.has(cards[key].id)) {
+        cardObjects[key] = cards[key]
+      }
+    }
+    return cardObjects
+  }
   uploadCards = (e) => {
     const fileReader = new FileReader();
     try{
@@ -71,7 +96,6 @@ class App extends React.Component {
     }
     fileReader.onload = e => {
       const cards = JSON.parse(e.target.result).Cards
-      console.log(cards);
       this.state.cards = cards;
       for (const [key, value] of Object.entries(this.state.columns)) {
         this.state.columns[key].cardIds = []
@@ -180,8 +204,6 @@ class App extends React.Component {
   }
   //reaction handler
   reactionhandler= (name, val)=>{
-    console.log(name)
-    console.log(val)
     delete this.state.reactions[name]
     this.state.reactions[val.name] = val
     let index = this.state.reactionColumn.reactionIds.indexOf(name)
@@ -214,11 +236,11 @@ class App extends React.Component {
       }
       this.state.reactions[key].addToDeck = newCards
     }
-    console.log(this.state)
     this.setState({
       ...this.state
     })
   }
+
   deleteReaction = (name) => {
     let reactionid = this.state.reactions[name].id
     delete this.state.reactions[name]
@@ -239,13 +261,11 @@ class App extends React.Component {
       }
       this.state.cards[key].reactions = newReactions
     }
-    console.log(this.state)
     this.setState({
       ...this.state
     })
   }
   onDragEnd = result => {
-    console.log(this.state)
     const { destination, source, draggableId } = result
     if (!destination) {
       return
@@ -265,9 +285,7 @@ class App extends React.Component {
     if (start === finish && source.droppableId !== "reactionCol") {
       const newCardIds = Array.from(start.cardIds)
       newCardIds.splice(source.index, 1)
-      // console.log(draggableId)
       newCardIds.splice(destination.index, 0, draggableId)
-      console.log(newCardIds)
       const newColumn = {
         ...start,
         cardIds: newCardIds
@@ -287,9 +305,7 @@ class App extends React.Component {
       const col = this.state.reactionColumn
       const newReactionIds = Array.from(col.reactionIds)
       newReactionIds.splice(source.index, 1)
-      // console.log(draggableId)
       newReactionIds.splice(destination.index, 0, draggableId)
-      console.log(newReactionIds)
       const newColumn = {
         ...col,
         reactionIds: newReactionIds
@@ -341,23 +357,23 @@ class App extends React.Component {
     const reactions = this.state.reactionColumn.reactionIds.map(
       reactionID => this.state.reactions[reactionID]
     )
-    console.log(this.state)
     return (
-      <div>
+      <div id="canvas">
         <div style={{height:140, display:'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
           <div style={{display:'flex', flexDirection: 'column', paddingLeft: 10}}>
-            <label>
+            <label id="smh">
               Upload Card
               <input name = "cardupload" type="file" onChange={this.uploadCards}></input>
             </label>
             <AddCard addCard = {this.addCard}></AddCard>
             <Button onClick = {this.downloadCards}>Download Cards</Button>
+            {/* <button id="smh2"></button> */}
           </div>
           <div style={{display:'flex', flexDirection: 'column', paddingLeft: 10}}>
             <DownloadFight downloadFight = {this.download} ></DownloadFight>
           </div>
           <div style={{display:'flex', flexDirection: 'column'}}>
-            <label>
+            <label >
               Upload Reaction
               <input name = "reactionupload" type="file" onChange={this.uploadReactions}></input>
             </label>
@@ -369,22 +385,27 @@ class App extends React.Component {
           <Container>
             {this.state.columnOrder.map(columnId => {
               const column = this.state.columns[columnId]
-              // console.log(this.state.cards)
               const cards = column.cardIds.map(
                 cardId => this.state.cards[cardId]
               )
               return (
-                <Column key={column.id} column={column} 
-                    cards={cards} handler={this.cardhandler} delete ={this.deleteCard} 
-                    reactionHandler = {this.reactionhandler} reactionDelete = {this.deleteReaction}
+                  <Column key={column.id} column={column} 
+                    cards={cards} handler={this.cardhandler} 
+                    delete ={this.deleteCard} 
+                    reactionHandler = {this.reactionhandler} 
+                    reactionDelete = {this.deleteReaction}
                     getReactions={this.getReactions}
-                    addReaction = {this.addReaction}/>
+                    addReaction = {this.addReaction}
+                    refreshScreen={this.dothething}
+                    getCards={this.getCards}
+                    color={this.color}/>
               )
             })}
               <ReactionColumn key='reac' column={this.state.reactionColumn} reactions={reactions} 
                   delete = {this.deleteReaction} handler={this.reactionhandler}/>
           </Container>
         </DragDropContext>
+        {/* <Xarrow start="smh" end="smh" extendSVGcanvas={100000}></Xarrow> */}
       </div>
     )
   }

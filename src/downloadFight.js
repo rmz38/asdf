@@ -20,10 +20,11 @@ export default class DownloadFight extends React.Component {
             Create Fight
           </label>
           <Dropdown>
-            <Dropdown.Toggle variant="success" id="dropdown-basic" style = {{width:'100%', backgroundColor:'purple', borderColor: 'purple'}}>
+            <Dropdown.Toggle
+            variant="success" id="dropdown-basic" style = {{width:'100%', backgroundColor:'purple', borderColor: 'purple'}}>
               Edit Enemy Fight
             </Dropdown.Toggle>
-            <Dropdown.Menu>
+            <Dropdown.Menu className="fight-menu">
               <InputGroup className="mb-3">
                 <InputGroup.Prepend>
                   <InputGroup.Text id="nameInput">Enemy Name</InputGroup.Text>

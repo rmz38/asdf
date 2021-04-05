@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Draggable } from 'react-beautiful-dnd'
 import { Button, Dropdown, InputGroup, FormControl } from 'react-bootstrap';
+import "./app.css"
 const fs = require('fs');
 const Container = styled.div`
   border: 1px solid lightgrey;
@@ -44,7 +45,7 @@ export default class AddReaction extends React.Component {
           Add Reaction
         </Dropdown.Toggle>
 
-        <Dropdown.Menu>
+        <Dropdown.Menu className="reaction-menu" style={{minWidth:'300px'}}>
           <InputGroup className="mb-3">
             <InputGroup.Prepend>
               <InputGroup.Text id="nameInput">Name</InputGroup.Text>

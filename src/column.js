@@ -50,11 +50,17 @@ export default class Column extends React.Component {
             >
               {this.props.cards.map((card, index) => (
                 <Card key={card.name + card.id} card={card} index={index} handler={this.handler} 
+                    id ={card.name}
                     delete={this.props.delete}
                     reactions={this.props.getReactions(card.reactions)}
                     reactionDelete={this.props.reactionDelete}
                     reactionHandler={this.props.reactionHandler}
                     addReaction={this.props.addReaction}
+                    refreshScreen={this.props.refreshScreen}
+                    color = {this.props.color}
+                    pointCards = {this.props.getCards(Object.keys(this.props.getReactions(card.reactions)).map((reaction, index ) =>
+                      this.props.getReactions(card.reactions)[reaction].addToDeck[0]
+                    ))}
                     />
               ))}
               {provided.placeholder}
