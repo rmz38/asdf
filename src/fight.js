@@ -3,26 +3,33 @@ import styled from 'styled-components'
 import { Draggable } from 'react-beautiful-dnd'
 import { Button, Dropdown, InputGroup, FormControl } from 'react-bootstrap';
 
-export default class DownloadFight extends React.Component {
+export default class Fight extends React.Component {
   constructor(props) {
     super(props)
     this.temp = {
       "enemyName": "Wolven Thug",
-      "enemyTexture": "wolvenThug.jpg",
+      "enemyTexture": "wolvenThug",
       "deck": [ 1, 2 ],
-      "background": "background.jpg"
+      "background": "background"
     }
   }
   render() {
+    this.temp = {
+      "enemyName": "Wolven Thug",
+      "enemyTexture": "wolvenThug",
+      "deck": [ 1, 2 ],
+      "background": "background"
+    }
+    if (this.props.fight != undefined){
+      this.temp = this.props.fight
+    }
+    const title = this.props.title != undefined ? this.props.title : "Edit "  + this.temp.enemyName + " Fight"
     return (
         <div>
-          <label>
-            Create Fight
-          </label>
           <Dropdown>
             <Dropdown.Toggle
             variant="success" id="dropdown-basic" style = {{width:'100%', backgroundColor:'purple', borderColor: 'purple'}}>
-              Edit Enemy Fight
+              {title}
             </Dropdown.Toggle>
             <Dropdown.Menu className="fight-menu">
               <InputGroup className="mb-3">
@@ -30,7 +37,7 @@ export default class DownloadFight extends React.Component {
                   <InputGroup.Text id="nameInput">Enemy Name</InputGroup.Text>
                 </InputGroup.Prepend>
                 <FormControl
-                  placeholder={"name"}
+                  placeholder={this.temp.enemyName}
                   aria-label="name"
                   aria-describedby="basic-addon1"
                   onChange={(e)=>{
@@ -43,7 +50,7 @@ export default class DownloadFight extends React.Component {
                   <InputGroup.Text id="nameInput">Enemy Texture</InputGroup.Text>
                 </InputGroup.Prepend>
                 <FormControl
-                  placeholder={"texture"}
+                  placeholder={this.temp.enemyTexture}
                   aria-label="name"
                   aria-describedby="basic-addon1"
                   onChange={(e)=>{
@@ -56,7 +63,7 @@ export default class DownloadFight extends React.Component {
                   <InputGroup.Text id="nameInput">Background</InputGroup.Text>
                 </InputGroup.Prepend>
                 <FormControl
-                  placeholder={"texture"}
+                  placeholder={this.temp.background}
                   aria-label="name"
                   aria-describedby="basic-addon1"
                   onChange={(e)=>{
@@ -86,7 +93,7 @@ export default class DownloadFight extends React.Component {
                 }}
               />
             </InputGroup>
-              <Button onClick = {() => this.props.downloadFight(this.temp)}>Download Fight</Button> 
+              <Button onClick = {() => this.props.saveFight(this.temp, this.props.index)}>{this.props.text}</Button> 
             </Dropdown.Menu>
           </Dropdown>
         </div>

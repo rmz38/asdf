@@ -5,6 +5,14 @@ const reactionKeys = Object.keys(reactionsObject)
 const reactionNames = reactionKeys.map((key) => reactionsObject[key].name)
 console.log(reactionNames)
 const initialData = {
+  fights:[
+    {
+      "enemyName": "Wolven Thug",
+      "enemyTexture": "wolvenThug",
+      "deck": [ 1, 2 ],
+      "background": "background"
+    }
+  ],
   cards: cards,
   reactions: reactions,
   columns: {
@@ -47,7 +55,7 @@ const initialData = {
   // Facilitate reordering of the columns
   columnOrder: ['column-1', 'column-2', 'column-3','column-4','column-5'],
   cardCounter: 13,
-  reactionCounter: 45
+  reactionCounter: 45,
 }
 
 export default initialData

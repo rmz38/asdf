@@ -5,7 +5,8 @@ import { DragDropContext } from 'react-beautiful-dnd'
 import styled from 'styled-components'
 import AddCard from './addCard'
 import AddReaction from './addReaction'
-import DownloadFight from './downloadFight'
+import FightDropdown from './fights'
+import Fight from './fight'
 import initialData from './initial-data'
 import Column from './column'
 import ReactionColumn from './reactionColumn'
@@ -25,7 +26,6 @@ class App extends React.Component {
     super(props)
     // Set the state directly. Use props if necessary.
     this.state = initialData
-    // this.archer = React.createRef()
     this.dothething = this.dothething.bind(this);
     this.color = {color:"#00ff00"}
     this.ref1 = React.createRef()
@@ -38,10 +38,7 @@ class App extends React.Component {
     console.log("Asdfasdf")
     this.setState(this.state)
   }
-  componentDidMount() {
-    // this.dothething = this.archer.current.refreshScreen
-    // this.archer.current.refreshScreen()
-  }
+
   addCard = (nc) => {
     if (!(nc.name in this.state.cards)){
       let newCard = JSON.parse(JSON.stringify(nc))
@@ -137,6 +134,24 @@ class App extends React.Component {
       this.setState(newState)
     };
   }
+  uploadFights = (e) => {
+    const fileReader = new FileReader();
+    try{
+      fileReader.readAsText(e.target.files[0], "UTF-8");
+    } catch {
+      return
+    }
+    fileReader.onload = e => {
+      const fights = JSON.parse(e.target.result).Fights
+      this.state.fights = fights
+      // in case key doesnt match name, since keys dont matter in game code
+      const newState = {
+        ...this.state
+      }
+      this.setState(newState)
+      console.log(newState)
+    };
+  }
   downloadCards = () => {
     const filename = "cards.json"
     const contentType = "application/json;charset=utf-8;"
@@ -173,10 +188,10 @@ class App extends React.Component {
       document.body.removeChild(a);
     }
   }
-  download = (data) => {
-    const filename = "enemyFight.json"
+  downloadFight = () => {
+    const filename = "enemyFights.json"
     const contentType = "application/json;charset=utf-8;"
-    const objectData = JSON.stringify(data, null, 2)
+    const objectData = JSON.stringify({Fights:this.state.fights}, null, 2)
     if (window.navigator && window.navigator.msSaveOrOpenBlob) {
       let blob = new Blob([decodeURIComponent(encodeURI(
         objectData))], { type: contentType });
@@ -190,6 +205,14 @@ class App extends React.Component {
       a.click();
       document.body.removeChild(a);
     }
+  }
+  saveFight = (fight, index) => {
+    if (index != undefined) {
+      this.state.fights[index] = fight
+    } else {
+      this.state.fights.push(fight)
+    }
+    this.setState(this.state)
   }
   //card handler
   cardhandler= (name, val, columnid)=>{
@@ -358,23 +381,28 @@ class App extends React.Component {
       reactionID => this.state.reactions[reactionID]
     )
     return (
-      <div id="canvas">
-        <div style={{height:140, display:'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+      <div style={{position:'relative'}} id="canvas">
+        <div style={{height:170, display:'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
           <div style={{display:'flex', flexDirection: 'column', paddingLeft: 10}}>
             <label id="smh">
-              Upload Card
+              Upload Cards
               <input name = "cardupload" type="file" onChange={this.uploadCards}></input>
             </label>
             <AddCard addCard = {this.addCard}></AddCard>
             <Button onClick = {this.downloadCards}>Download Cards</Button>
-            {/* <button id="smh2"></button> */}
+            <button id="smh2"></button>
           </div>
           <div style={{display:'flex', flexDirection: 'column', paddingLeft: 10}}>
-            <DownloadFight downloadFight = {this.download} ></DownloadFight>
+            <label>
+              Upload Fights
+              <input name = "fightupload" type="file" onChange={this.uploadFights}></input>
+            </label>
+            <Fight title={"Add Fight"} saveFight={this.saveFight} text={"Add Fight"}></Fight>
+            <FightDropdown fights={this.state.fights} downloadFight = {this.downloadFight} saveFight={this.saveFight}></FightDropdown>
           </div>
           <div style={{display:'flex', flexDirection: 'column'}}>
             <label >
-              Upload Reaction
+              Upload Reactions
               <input name = "reactionupload" type="file" onChange={this.uploadReactions}></input>
             </label>
             <AddReaction cardname={null} addReaction = {this.addReaction}></AddReaction>
@@ -405,7 +433,7 @@ class App extends React.Component {
                   delete = {this.deleteReaction} handler={this.reactionhandler}/>
           </Container>
         </DragDropContext>
-        {/* <Xarrow start="smh" end="smh" extendSVGcanvas={100000}></Xarrow> */}
+        <Xarrow start="smh2" end="smh" extendSVGcanvas={100000}></Xarrow>
       </div>
     )
   }

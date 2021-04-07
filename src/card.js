@@ -5,7 +5,6 @@ import { Button, Dropdown, InputGroup, FormControl } from 'react-bootstrap';
 import Reaction from './reaction'
 import AddReaction from './addReaction'
 import Xarrow from "react-xarrows";
-import { ArcherElement } from 'react-archer';
 const fs = require('fs');
 const Container = styled.div`
   border: 1px solid lightgrey;
@@ -117,10 +116,6 @@ export default class Card extends React.Component {
             isDragDisabled={isDragDisabled}
           >
             {this.props.card.name + " - " + this.props.card.id}
-            {/* <ArcherElement
-              id={this.props.card.name}
-              relations={pointCards}
-            > */}
               <div>
               {pointCards}
               <Button onClick={()=>this.toggleArrow()}>Toggle Arrow</Button>
