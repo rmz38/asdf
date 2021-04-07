@@ -1,19 +1,19 @@
 self.__precacheManifest = [
   {
-    "revision": "d1bb2e24ed70d5951b44",
+    "revision": "217f33784d2508c7263e",
     "url": "/dd-level-editor/static/css/main.ac019a05.chunk.css"
   },
   {
-    "revision": "d1bb2e24ed70d5951b44",
-    "url": "/dd-level-editor/static/js/main.d1bb2e24.chunk.js"
+    "revision": "217f33784d2508c7263e",
+    "url": "/dd-level-editor/static/js/main.217f3378.chunk.js"
   },
   {
-    "revision": "0d0395b3b1b2cdfdef92",
+    "revision": "1adaff8da56a01d20f2c",
     "url": "/dd-level-editor/static/css/1.a5ebf429.chunk.css"
   },
   {
-    "revision": "0d0395b3b1b2cdfdef92",
-    "url": "/dd-level-editor/static/js/1.0d0395b3.chunk.js"
+    "revision": "1adaff8da56a01d20f2c",
+    "url": "/dd-level-editor/static/js/1.1adaff8d.chunk.js"
   },
   {
     "revision": "91de3004f883364bd5c7",
@@ -76,7 +76,7 @@ self.__precacheManifest = [
     "url": "/dd-level-editor/static/media/wounded.f873b18a.png"
   },
   {
-    "revision": "535f9435bea4efe8b39e7263b7ce62dc",
+    "revision": "97ef14ea998c988384fb947c656cee3e",
     "url": "/dd-level-editor/index.html"
   }
 ];
