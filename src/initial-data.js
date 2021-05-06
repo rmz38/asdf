@@ -55,7 +55,7 @@ const initialData = {
   // Facilitate reordering of the columns
   columnOrder: ['column-1', 'column-2', 'column-3','column-4','column-5'],
   cardCounter: 13,
-  reactionCounter: 45,
+  reactionCounter: 48,
 }
 
 export default initialData

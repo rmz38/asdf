@@ -24,7 +24,7 @@ export default class AddReaction extends React.Component {
     this.temp = {
       "id": -1,
       "name":"temp",
-      "description":"temp",
+      "description":"Shuffle  into the Deck",
       "cost": {
         "blade": 0,
         "flourish": 0,
@@ -32,10 +32,12 @@ export default class AddReaction extends React.Component {
         "brawn": 0
       },
       "reward": 0,
-      "addToDeck": [1],
+      "addToDeck": [],
       "delete": [],
       "win": false,
-      "lose":false
+      "lose":false,
+      "fontSize":1,
+      "animation":1
     }
   }
   render() {

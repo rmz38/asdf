@@ -41,7 +41,7 @@ export default class Card extends React.Component {
     } else {
       this.setState({
         ...this.state,
-        color:"#0000ff",
+        color:"#ff00ff",
         toggle: !this.state.toggle
       })
     }

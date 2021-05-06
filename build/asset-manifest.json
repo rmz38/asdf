@@ -1,10 +1,10 @@
 {
   "main.css": "/dd-level-editor/static/css/main.ac019a05.chunk.css",
-  "main.js": "/dd-level-editor/static/js/main.d1bb2e24.chunk.js",
-  "main.js.map": "/dd-level-editor/static/js/main.d1bb2e24.chunk.js.map",
+  "main.js": "/dd-level-editor/static/js/main.217f3378.chunk.js",
+  "main.js.map": "/dd-level-editor/static/js/main.217f3378.chunk.js.map",
   "static/css/1.a5ebf429.chunk.css": "/dd-level-editor/static/css/1.a5ebf429.chunk.css",
-  "static/js/1.0d0395b3.chunk.js": "/dd-level-editor/static/js/1.0d0395b3.chunk.js",
-  "static/js/1.0d0395b3.chunk.js.map": "/dd-level-editor/static/js/1.0d0395b3.chunk.js.map",
+  "static/js/1.1adaff8d.chunk.js": "/dd-level-editor/static/js/1.1adaff8d.chunk.js",
+  "static/js/1.1adaff8d.chunk.js.map": "/dd-level-editor/static/js/1.1adaff8d.chunk.js.map",
   "runtime~main.js": "/dd-level-editor/static/js/runtime~main.91de3004.js",
   "runtime~main.js.map": "/dd-level-editor/static/js/runtime~main.91de3004.js.map",
   "static/media/notfound.png": "/dd-level-editor/static/media/notfound.c7c261da.png",
@@ -24,6 +24,6 @@
   "static/css/main.ac019a05.chunk.css.map": "/dd-level-editor/static/css/main.ac019a05.chunk.css.map",
   "static/css/1.a5ebf429.chunk.css.map": "/dd-level-editor/static/css/1.a5ebf429.chunk.css.map",
   "index.html": "/dd-level-editor/index.html",
-  "precache-manifest.39896289d47be5abebea40ade0ab2b1f.js": "/dd-level-editor/precache-manifest.39896289d47be5abebea40ade0ab2b1f.js",
+  "precache-manifest.ac02627c2a04ae2f3cc14b86efd34e8e.js": "/dd-level-editor/precache-manifest.ac02627c2a04ae2f3cc14b86efd34e8e.js",
   "service-worker.js": "/dd-level-editor/service-worker.js"
 }

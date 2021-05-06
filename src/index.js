@@ -188,10 +188,10 @@ class App extends React.Component {
       document.body.removeChild(a);
     }
   }
-  downloadFight = () => {
+  downloadFight = (data) => {
     const filename = "enemyFights.json"
     const contentType = "application/json;charset=utf-8;"
-    const objectData = JSON.stringify({Fights:this.state.fights}, null, 2)
+    const objectData = JSON.stringify(data, null, 2)
     if (window.navigator && window.navigator.msSaveOrOpenBlob) {
       let blob = new Blob([decodeURIComponent(encodeURI(
         objectData))], { type: contentType });
@@ -206,14 +206,14 @@ class App extends React.Component {
       document.body.removeChild(a);
     }
   }
-  saveFight = (fight, index) => {
-    if (index != undefined) {
-      this.state.fights[index] = fight
-    } else {
-      this.state.fights.push(fight)
-    }
-    this.setState(this.state)
-  }
+  // saveFight = (fight, index) => {
+  //   if (index != undefined) {
+  //     this.state.fights[index] = fight
+  //   } else {
+  //     this.state.fights.push(fight)
+  //   }
+  //   this.setState(this.state)
+  // }
   //card handler
   cardhandler= (name, val, columnid)=>{
     delete this.state.cards[name]
@@ -257,7 +257,11 @@ class App extends React.Component {
           newCards.push(cshuffled[i])
         }
       }
-      this.state.reactions[key].addToDeck = newCards
+      if (newCards.length == 0){
+        this.deleteReaction(key)
+      } else {
+        this.state.reactions[key].addToDeck = newCards
+      }
     }
     this.setState({
       ...this.state
@@ -397,8 +401,8 @@ class App extends React.Component {
               Upload Fights
               <input name = "fightupload" type="file" onChange={this.uploadFights}></input>
             </label>
-            <Fight title={"Add Fight"} saveFight={this.saveFight} text={"Add Fight"}></Fight>
-            <FightDropdown fights={this.state.fights} downloadFight = {this.downloadFight} saveFight={this.saveFight}></FightDropdown>
+            <Fight title={"Edit Fight"} downloadFight={this.downloadFight} text={"Download Fight"}></Fight>
+            {/* <FightDropdown fights={this.state.fights} downloadFight = {this.downloadFight} saveFight={this.saveFight}></FightDropdown> */}
           </div>
           <div style={{display:'flex', flexDirection: 'column'}}>
             <label >
@@ -433,7 +437,6 @@ class App extends React.Component {
                   delete = {this.deleteReaction} handler={this.reactionhandler}/>
           </Container>
         </DragDropContext>
-        <Xarrow start="smh2" end="smh" extendSVGcanvas={100000}></Xarrow>
       </div>
     )
   }

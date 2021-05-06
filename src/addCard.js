@@ -148,11 +148,13 @@ export default class AddCard extends React.Component {
                   while(input.indexOf(',') > -1){
                     responses.push(+input.substring(0, input.indexOf(',')))
                     input = input.substring(input.indexOf(',') + 1)
+                    console.log(input)
                   }
                   if( input.length > 0) {
                     responses.push(+input)
                   }
-                  this.temp.responses = responses
+                  console.log(responses)
+                  this.temp.reactions = responses
                 }}
               />
             </InputGroup>

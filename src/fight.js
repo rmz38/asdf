@@ -93,7 +93,7 @@ export default class Fight extends React.Component {
                 }}
               />
             </InputGroup>
-              <Button onClick = {() => this.props.saveFight(this.temp, this.props.index)}>{this.props.text}</Button> 
+              <Button onClick = {() => this.props.downloadFight(this.temp)}>{this.props.text}</Button> 
             </Dropdown.Menu>
           </Dropdown>
         </div>
