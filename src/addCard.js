@@ -32,6 +32,7 @@ export default class AddCard extends React.Component {
           "lunge": 0,
           "brawn": 0
       },
+      "responseType":"lunge",
       "level": 1
     }
   }
@@ -118,6 +119,19 @@ export default class AddCard extends React.Component {
                 aria-describedby="basic-addon1"
                 onChange={(e)=>{
                   this.temp.texture = e.target.value
+                }}
+              />
+            </InputGroup>
+            <InputGroup className="mb-3">
+              <InputGroup.Prepend>
+                <InputGroup.Text id="brawnInput">RType</InputGroup.Text>
+              </InputGroup.Prepend>
+              <FormControl
+                placeholder={"lunge"}
+                aria-label="texture"
+                aria-describedby="basic-addon1"
+                onChange={(e)=>{
+                  this.temp.responseType = e.target.value
                 }}
               />
             </InputGroup>

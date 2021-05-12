@@ -211,6 +211,20 @@ export default class Card extends React.Component {
                   </InputGroup>
                   <InputGroup className="mb-3">
                     <InputGroup.Prepend>
+                      <InputGroup.Text id="brawnInput">RType</InputGroup.Text>
+                    </InputGroup.Prepend>
+                    <FormControl
+                      placeholder={this.props.card.responseType}
+                      aria-label="texture"
+                      aria-describedby="basic-addon1"
+                      onChange={(e)=>{
+                        // this.props.card.name=e.target.value
+                        this.temp.responseType = e.target.value
+                      }}
+                    />
+                  </InputGroup>
+                  <InputGroup className="mb-3">
+                    <InputGroup.Prepend>
                       <InputGroup.Text id="responses">Reactions</InputGroup.Text>
                     </InputGroup.Prepend>
                     <FormControl

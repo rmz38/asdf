@@ -10,6 +10,7 @@ const cards = {
           "lunge": 0,
           "brawn": 0
         },
+      "responseType": "lunge",
       "level": 1
     },
     "Bide Time":{
@@ -23,6 +24,7 @@ const cards = {
           "lunge": 0,
           "brawn": 0
         },
+      "responseType": "blade",
       "level": 1
     },
     "Guard":{
@@ -36,6 +38,7 @@ const cards = {
           "lunge": 0,
           "brawn": 0
         },
+      "responseType": "brawn",
       "level": 1
     },
     "Grab":{
@@ -49,6 +52,7 @@ const cards = {
           "lunge": 0,
           "brawn": 0
         },
+      "responseType": "flourish",
       "level": 1
     },
     "Grappled":{
@@ -62,6 +66,7 @@ const cards = {
           "lunge": 0,
           "brawn": 0
         },
+      "responseType": "flourish",
       "level": 2
     },
     "Exposed":{
@@ -75,6 +80,7 @@ const cards = {
           "lunge": 0,
           "brawn": 0
         },
+      "responseType": "lunge",
       "level": 2
     },
     "Staggered":{
@@ -88,6 +94,7 @@ const cards = {
           "lunge": 5,
           "brawn": 0
         },
+      "responseType": "brawn",
       "level": 2
     },
     "Stunned":{
@@ -96,11 +103,12 @@ const cards = {
       "texture": "stunned",
       "reactions": [27,28],
       "resources": {
-          "blade": 10,
+          "blade": 0,
           "flourish": 0,
           "lunge": 0,
-          "brawn": 0
+          "brawn": 10
         },
+      "responseType": "lunge",
       "level": 3
     },
     "Wounded":{
@@ -114,6 +122,7 @@ const cards = {
           "lunge": 0,
           "brawn": 0
         },
+      "responseType": "flourish",
       "level": 3
     },
     "Blinded":{
@@ -127,6 +136,7 @@ const cards = {
           "lunge": 10,
           "brawn": 0
         },
+      "responseType": "blade",
       "level": 3
     },
     "Crushed":{
@@ -140,6 +150,7 @@ const cards = {
           "lunge": 0,
           "brawn": 0
         },
+      "responseType": "brawn",
       "level": 4
     },
     "Impaled":{
@@ -153,6 +164,7 @@ const cards = {
           "lunge": 0,
           "brawn": 15
         },
+      "responseType": "blade",
       "level": 4
     },
     "Incapacitated":{
@@ -166,9 +178,10 @@ const cards = {
           "lunge": 0,
           "brawn": 0
         },
+      "responseType": "none",
       "level": 5
     }
-}
+  }
 
 
 export default cards;
