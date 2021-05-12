@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "3c563cbcc81853bba6de",
+    "revision": "0dcd4cf91908b052e10c",
     "url": "/dd-level-editor/static/css/main.ac019a05.chunk.css"
   },
   {
-    "revision": "3c563cbcc81853bba6de",
-    "url": "/dd-level-editor/static/js/main.3c563cbc.chunk.js"
+    "revision": "0dcd4cf91908b052e10c",
+    "url": "/dd-level-editor/static/js/main.0dcd4cf9.chunk.js"
   },
   {
     "revision": "d25c44cb0f092ec9a3cf",
@@ -108,7 +108,7 @@ self.__precacheManifest = [
     "url": "/dd-level-editor/static/media/wounded.859c2248.png"
   },
   {
-    "revision": "df57822bc725ac8bb5d5e74cae456a85",
+    "revision": "7343ee64291966a25456d613c118ca4a",
     "url": "/dd-level-editor/index.html"
   }
 ];
